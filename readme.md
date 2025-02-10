@@ -115,3 +115,12 @@ user查看文章列表页面： /user
 编辑文章页面： /user/articles/edit 
 查看单个文章页面： /user/articles/view 
 文章详情页面： /articles/[id]
+
+
+![image](https://github.com/user-attachments/assets/38c90a14-fb1b-48f7-9aa8-8119f3da975a)
+
+![image](https://github.com/user-attachments/assets/e7dc878e-6503-4262-80e2-bdc0dd2f2624)
+
+![image](https://github.com/user-attachments/assets/d23ce4a9-e5e6-4989-a92d-81d290e11c98)
+
+
