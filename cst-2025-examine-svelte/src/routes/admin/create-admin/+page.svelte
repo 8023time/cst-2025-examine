@@ -10,7 +10,7 @@
 	let mobile_phone = '';
 
 	const submitPasswordChange = async () => {
-		try {			
+		try {
 			const response = await AdminAPI.createAdmin(admin_name, password, mobile_phone);
 			if (response.data.status === 0) {
 				notyf.success('管理员账户创建成功！');
@@ -52,65 +52,166 @@
 	<button type="submit" class="button is-primary">创建管理员账户</button>
 </form>
 
-<style>
+<style lang="scss">
 	@import 'notyf/notyf.min.css';
 	@import 'bulma/css/bulma.css';
+
+	/* 定义颜色变量 */
+	$primary-blue: #007bff;
+	$text-dark: #2c3e50;
+	$text-medium: #555;
+	$bg-light: #f8f9fa;
+	$white: #fff;
+	$border-light: #dcdcdc;
+
 	.top {
 		display: flex;
 		align-items: center;
 		justify-content: center;
-		height: 150px;
-		background-color: #f5f5f5;
+		height: 180px; /* 增加高度 */
+		background-color: $bg-light;
+		border-bottom: 1px solid $border-light; /* 更柔和的底部边框 */
+		box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05); /* 轻微阴影 */
+		margin-bottom: 40px; /* 增加底部间距 */
 	}
 	.title {
-		font-size: 36px;
-		font-weight: 700;
-		color: #333;
+		font-size: 3em; /* 增大字号 */
+		font-weight: 700; /* 更粗的字重 */
+		color: $text-dark;
+		text-align: center;
+		line-height: 1.2;
+		letter-spacing: -0.03em;
 	}
 	.form-container {
-		max-width: 450px;
-		margin: 40px auto;
-		padding: 30px;
-		background-color: #ffffff;
-		border-radius: 12px;
-		box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+		max-width: 100%; /* 允许铺满左右 */
+		margin: 0 30px 50px 30px; /* 调整左右外边距，保留上下 */
+		padding: 40px; /* 增加内边距 */
+		background-color: $white;
+		border-radius: 15px; /* 更大的圆角 */
+		box-shadow: 0 10px 25px rgba(0, 0, 0, 0.12); /* 柔和且明显的阴影 */
+		/* margin-bottom: 50px; 底部间距已包含在上方 margin 中 */
 	}
 	.form-group {
-		margin-bottom: 20px;
+		margin-bottom: 25px; /* 增加间距 */
 	}
 	label {
 		display: block;
-		font-weight: 500;
-		margin-bottom: 8px;
-		color: #333;
+		font-weight: 600; /* 更粗的字重 */
+		margin-bottom: 10px; /* 增加下方间距 */
+		color: $text-dark;
+		font-size: 1.05em;
 	}
 	.input-field {
 		width: 100%;
-		padding: 12px;
-		border: 1px solid #dcdcdc;
-		border-radius: 6px;
-		font-size: 14px;
-		transition:
-			border-color 0.3s ease,
-			box-shadow 0.3s ease;
-	}
-	.input-field:focus {
-		border-color: #4caf50;
-		box-shadow: 0 0 8px rgba(76, 175, 80, 0.4);
-		outline: none;
+		padding: 14px 18px; /* 调整内边距 */
+		border: 1px solid $border-light; /* 统一边框颜色 */
+		border-radius: 8px; /* 统一圆角 */
+		font-size: 1.1em; /* 调整字号 */
+		transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); /* 平滑过渡 */
+		background-color: #fcfcfc; /* 略微偏白的背景色 */
+		color: $text-medium;
+
+		&:focus {
+			border-color: $primary-blue; /* 聚焦时边框颜色 */
+			box-shadow: 0 0 0 0.2em rgba(0, 123, 255, 0.3); /* 聚焦时阴影 */
+			outline: none; /* 移除默认轮廓 */
+		}
+		&::placeholder {
+			color: #a0a0a0;
+			opacity: 0.9;
+		}
 	}
 	.button.is-primary {
 		width: 100%;
-		padding: 12px;
-		font-size: 16px;
-		border-radius: 6px;
+		max-width: 300px; /* 限制最大宽度 */
+		padding: 16px 25px; /* 调整内边距 */
+		font-size: 1.2em; /* 调整字号 */
+		border-radius: 8px; /* 统一圆角 */
 		cursor: pointer;
-		transition:
-			background-color 0.3s ease,
-			transform 0.3s ease;
+		background-color: $primary-blue;
+		border-color: $primary-blue;
+		color: $white;
+		font-weight: 700;
+		transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); /* 平滑过渡 */
+		box-shadow: 0 6px 12px rgba(0, 123, 255, 0.25);
+		margin-top: 20px; /* 增加上方间距 */
+
+		&:hover {
+			background-color: darken($primary-blue, 8%);
+			border-color: darken($primary-blue, 8%);
+			transform: translateY(-3px);
+			box-shadow: 0 8px 16px rgba(0, 123, 255, 0.35);
+		}
+		&:active {
+			transform: translateY(0);
+			box-shadow: 0 4px 8px rgba(0, 123, 255, 0.2);
+		}
 	}
-	.form-container .form-group input,
-	.form-container button {
-		margin-top: 8px;
+
+	/* Notyf 样式保持不变 */
+	.x-notification {
+		background-color: #2ecc71;
+		color: white;
+		border-radius: 4px;
+		padding: 10px 20px;
+		font-size: 16px;
+	}
+	.x-notification.error {
+		background-color: #e74c3c;
+	}
+
+	/* 响应式设计 */
+	@media (max-width: 768px) {
+		.top {
+			height: 120px;
+			margin-bottom: 25px;
+		}
+		.title {
+			font-size: 2.2em;
+		}
+		.form-container {
+			margin: 0 15px 30px 15px; /* 调整小屏幕下的左右外边距 */
+			padding: 25px;
+			box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+		}
+		.form-group {
+			margin-bottom: 20px;
+		}
+		label {
+			font-size: 1em;
+			margin-bottom: 5px;
+		}
+		.input-field {
+			padding: 12px 15px;
+			font-size: 1em;
+		}
+		.button.is-primary {
+			max-width: 100%;
+			padding: 14px 20px;
+			font-size: 1.1em;
+			margin-top: 15px;
+		}
+	}
+
+	@media (max-width: 480px) {
+		.top {
+			height: 100px;
+			margin-bottom: 20px;
+		}
+		.title {
+			font-size: 1.8em;
+		}
+		.form-container {
+			padding: 20px;
+			margin: 0 10px 30px 10px; /* 进一步调整小屏幕下的左右外边距 */
+		}
+		.input-field {
+			padding: 10px 12px;
+			font-size: 0.95em;
+		}
+		.button.is-primary {
+			padding: 12px 18px;
+			font-size: 1em;
+		}
 	}
 </style>
